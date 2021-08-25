@@ -7,7 +7,7 @@ export interface AuthenticatedRoutesInterface extends RouteProps {
   children: React.ReactElement
 }
 
-const AuthenticatedRoute = ({ children, ...rest }: AuthenticatedRoutesInterface) => {
+const PrivateRoute = ({ children, ...rest }: AuthenticatedRoutesInterface) => {
   const { isLoggedIn } = useGetUser();
   return (
     <Route {...rest}>
@@ -16,4 +16,4 @@ const AuthenticatedRoute = ({ children, ...rest }: AuthenticatedRoutesInterface)
   );
 };
 
-export { AuthenticatedRoute };
+export { PrivateRoute };
