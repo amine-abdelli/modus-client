@@ -6,10 +6,8 @@ function useGetUser(options: QueryHookOptions = {}) {
     errorPolicy: 'ignore',
     ...options,
   });
-  console.log('DATA', data);
-  // const isLoggedIn = Boolean(data?.self.email);
-
-  return { data, ...rest };
+  const isLoggedIn = Boolean(data?.isLoggedIn?.email);
+  return { data, ...rest, isLoggedIn };
 }
 
 export { useGetUser };
