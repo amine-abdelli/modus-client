@@ -1,3 +1,3 @@
 export { Routes } from './Routes.enum';
-export { AuthenticatedRoutes } from './AuthenticatedRoutes';
-export { UnAuthenticatedRoutes } from './UnAuthenticatedRoutes';
+export { AuthenticatedRoute } from './AuthenticatedRoute';
+export { UnAuthenticatedRoute } from './UnAuthenticatedRoute';
