@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { useGetUser } from '../api/hooks/useGetUser';
 import { AuthenticatedRoutesInterface } from './PrivateRoute';
@@ -9,7 +8,8 @@ export interface UnAuthenticatedRoutesInterface extends RouteProps {
 }
 
 const PublicRoute = ({ children, ...rest }: AuthenticatedRoutesInterface) => {
-  const { isLoggedIn } = useGetUser();
+  const { isLoggedIn, loading } = useGetUser();
+  if (loading) { return (<>Loading...</>); }
   return (
     <Route {...rest}>
       {isLoggedIn ? <Redirect to={Routes.HOME} /> : (children)}

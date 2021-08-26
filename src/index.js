@@ -6,8 +6,8 @@ import {
   createHttpLink,
   ApolloProvider,
   from,
-  NormalizedCacheObject,
 } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './_global.less';
 import { cleanTypenameFieldLink } from './api/cleanTypenameFieldLink';
@@ -27,7 +27,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ApolloProvider>,
   document.getElementById('root'),
 );
