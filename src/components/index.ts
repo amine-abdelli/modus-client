@@ -1,2 +1,2 @@
 export { Home } from './Home/Home';
-export { Login } from './Authentication/Login';
+export { Login, Signup, LogoutButton } from './Authentication';
