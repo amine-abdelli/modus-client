@@ -6,11 +6,11 @@ query Query {
     id
     email
     name
-      moods {
+    moods {
         id
         rate
         phrase
-      }
+    }
   }
 }
 `;
@@ -35,23 +35,6 @@ query LogoutQuery {
 }
 `;
 
-const SIGNUP_MUTATION = gql`
-  mutation SignupMutation(
-    $email: String!
-    $password: String!
-  ) {
-    signup(
-      email: $email
-      rawPassword: $password
-    ) {
-      user { 
-        id
-        email
-      }
-    }
-  }
-`;
-
 export {
-  SELF_QUERY, LOGIN_QUERY, LOGOUT_QUERY, SIGNUP_MUTATION,
+  SELF_QUERY, LOGIN_QUERY, LOGOUT_QUERY,
 };
