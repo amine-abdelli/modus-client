@@ -1,12 +1,30 @@
 .navbar {
+  position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  min-height: 100%;
-  .navbar-layout {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 100%;
+  height: 100%;
+  &--brand{
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  .logout--button {
+    position: absolute;
+    bottom: 1rem;
+  }
+}
+
+.section-card {
+  display: flex;
+  justify-content: center;
+  width: 5.5rem;
+  margin: 0.1rem;
+  padding: 0.3rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  &:hover {
+    transition: background-color 0.3s ease;
+    background-color: fade(cadetblue, 20%);
   }
 }
