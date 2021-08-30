@@ -15,7 +15,7 @@ const LogoutButton = () => {
     logOutUser();
   }
   return (
-    <Button onClick={logoutUser} icon={<LogoutOutlined />} />
+    <Button className="logout--button" onClick={logoutUser} icon={<LogoutOutlined />} />
   );
 };
 
