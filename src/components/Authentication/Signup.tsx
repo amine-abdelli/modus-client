@@ -3,7 +3,7 @@ import {
   Card, Form, Input, Button, Typography,
 } from 'antd';
 import { useHistory } from 'react-router';
-import { SIGNUP_MUTATION } from '../../api/requests/queries';
+import { SIGNUP_MUTATION } from '../../api/requests/mutation';
 import { Routes } from '../../Routes';
 
 interface submitSignupFormArgs {
