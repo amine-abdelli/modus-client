@@ -2,7 +2,6 @@ import { useMutation } from '@apollo/client';
 import {
   Card, Form, Input, Button, Typography,
 } from 'antd';
-import { useHistory } from 'react-router';
 import { SIGNUP_MUTATION } from '../../api/requests/mutation';
 import { Routes } from '../../Routes';
 
@@ -12,10 +11,9 @@ interface submitSignupFormArgs {
 }
 
 const Signup = () => {
-  const history = useHistory();
   const [signupUser] = useMutation(SIGNUP_MUTATION, {
-    onCompleted: () => history.push(Routes.HOME),
-    onError: () => history.push(Routes.HOME),
+    onCompleted: () => window.location.replace(Routes.HOME),
+    onError: () => window.location.replace(Routes.HOME),
   });
 
   function submitSignupForm({ email, password }: submitSignupFormArgs) {

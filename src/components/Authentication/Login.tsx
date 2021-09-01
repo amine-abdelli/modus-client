@@ -24,10 +24,10 @@ const Login = () => {
   useEffect(() => console.log('yo'));
   const [getLoggedIn] = useLazyQuery(LOGIN_QUERY, {
     onCompleted: () => {
-      history.push(Routes.HOME);
+      window.location.replace(Routes.HOME);
     },
     onError: (error: ApolloError) => {
-      console.log(error);
+      window.location.replace(Routes.LOGIN);
     },
   });
   function onFormSubmit(values: any) {
