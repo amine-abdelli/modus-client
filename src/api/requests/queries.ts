@@ -10,6 +10,7 @@ query Query {
         id
         rate
         phrase
+        createdAt
     }
   }
 }

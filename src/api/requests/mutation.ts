@@ -32,4 +32,21 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-export { INPUT_USER_NAME, SIGNUP_MUTATION };
+const CREATE_MOOD_MUTATION = gql`
+  mutation CreateMoodMutation(
+    $userId: String!
+    $rate: Int!
+    $phrase: String!
+  ) {
+    createMood(
+      userId: $userId
+      rate: $rate
+      phrase: $phrase
+    ){
+    user {
+      id
+      email
+    }}
+  }
+`;
+export { INPUT_USER_NAME, SIGNUP_MUTATION, CREATE_MOOD_MUTATION };
