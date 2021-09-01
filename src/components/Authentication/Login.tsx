@@ -3,10 +3,7 @@ import {
   Card, Form, Input, Button, message,
 } from 'antd';
 import Title from 'antd/lib/typography/Title';
-import { useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useGetUser } from '../../api/hooks/useGetUser';
 import { LOGIN_QUERY } from '../../api/requests/queries';
 import { Routes } from '../../Routes';
 
@@ -18,10 +15,6 @@ export interface loginFormInterface {
 }
 
 const Login = () => {
-  const history = useHistory();
-  const { isLoggedIn } = useGetUser();
-  console.log(isLoggedIn);
-  useEffect(() => console.log('yo'));
   const [getLoggedIn] = useLazyQuery(LOGIN_QUERY, {
     onCompleted: () => {
       window.location.replace(Routes.HOME);
@@ -30,9 +23,11 @@ const Login = () => {
       window.location.replace(Routes.LOGIN);
     },
   });
-  function onFormSubmit(values: any) {
-    history.push(Routes.HOME);
 
+  const [form] = Form.useForm();
+
+  function onFormSubmit(values: any) {
+    form.resetFields();
     message.success('Bienvenue à bord !');
     getLoggedIn({
       variables: { ...values },
@@ -49,6 +44,7 @@ const Login = () => {
           initialValues={{ remember: true }}
           onFinish={onFormSubmit}
           layout="vertical"
+          form={form}
         >
           <Form.Item
             className="form_input"
