@@ -5,6 +5,8 @@ import {
 import { useMutation } from '@apollo/client';
 import { INPUT_USER_NAME } from '../../api/requests/mutation';
 
+import './Dialog.less';
+
 const Dialog = ({
   openDialog, data, onModalClose, question, onUserInput,
 }: any) => {
@@ -25,11 +27,11 @@ const Dialog = ({
     onModalClose();
     message.success(`Bienvenue ${userName}`);
   }
-  console.log(data);
 
   return (
     <>
       <Modal
+        className="dialog-modal"
         visible={openDialog}
         footer={null}
         closable={false}

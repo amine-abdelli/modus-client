@@ -1,25 +1,28 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   Form, Input, Modal, Button, message,
 } from 'antd';
 import { useMutation } from '@apollo/client';
+import { EnterOutlined } from '@ant-design/icons';
 import { Dialog } from './Dialog.enum';
 import { CREATE_MOOD_MUTATION } from '../../api/requests/mutation';
 import { MoodInput } from './MoodInput';
 
-interface MoodInputArgs {
+export interface MoodInputArgs {
   rate: number,
-  phrase: string,
-  userId: string
+  phrase?: string | null,
+  userId?: string,
+  createdAt?: Date
 }
 
 const DialogMood = ({
   openDialog, data, onModalClose,
 }: any) => {
+  const { id, name } = data?.isLoggedIn;
   const [moodRate, setMoodRate] = useState<MoodInputArgs>({
     rate: 0,
     phrase: '',
-    userId: data?.isLoggedIn?.id,
+    userId: id,
   });
 
   const [SetDailyMood] = useMutation(CREATE_MOOD_MUTATION, {
@@ -46,11 +49,19 @@ const DialogMood = ({
   return (
     <>
       <Modal
+        className="dialog-modal"
         visible={openDialog}
         footer={null}
         closable={false}
         onCancel={onModalClose}
+        mask={false}
       >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <p style={{ textAlign: 'center' }}>{`Salut ${name || ''} t'es dans quel mood aujourd'hui?`}</p>
+          <MoodInput
+            onMoodRateSelect={onMoodRateSelect}
+          />
+        </div>
         <Form
           initialValues={{ remember: true }}
           onFinish={moodFormSubmit}
@@ -64,23 +75,14 @@ const DialogMood = ({
             );
           }}
         >
-          <p>{Dialog.MOOD}</p>
-          <MoodInput
-            onMoodRateSelect={onMoodRateSelect}
-          />
-          {moodRate.rate > 0 && (
+          {moodRate?.rate > 0 && (
             <>
               <p>{Dialog.PHRASE}</p>
               <Form.Item
                 name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+                rules={[{ required: false }]}
               >
-                <Input />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
+                <Input suffix={<EnterOutlined />} />
               </Form.Item>
             </>
           )}
