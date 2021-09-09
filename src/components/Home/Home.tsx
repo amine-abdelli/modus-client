@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Dialog as DialogEnum } from '../Dialogs/Dialog.enum';
 import './Home.less';
@@ -15,49 +15,47 @@ export interface moodArgs {
 }
 
 const Home = () => {
-  const [isUserNameSubmitted, setIsUserNameSubmitted] = useState<string>('');
+  const [userNameInput, setUserNameInput] = useState<string>('');
   const [isFirstLoginModalVisible, setIsFirstLoginModalVisible] = useState(true);
-  const [isMoodModalVisible, setIsMoodModalVisible] = useState(false);
+  const [isMoodModalVisible, setIsMoodModalVisible] = useState(true);
   const { data } = useGetUser();
-
+  const { name, moods } = data?.isLoggedIn;
   const todayDate = new Intl.DateTimeFormat('fr-FR').format(new Date());
 
-  const isDailyMoodSet = data?.isLoggedIn?.moods.some((mood: moodArgs): boolean => (
+  const isDailyMoodSet = moods.some((mood: moodArgs): boolean => (
     formatDate(mood?.createdAt) === todayDate));
 
   function getUserName(nameInputvalue: string) {
-    setIsUserNameSubmitted(nameInputvalue);
+    setUserNameInput(nameInputvalue);
   }
 
-  useEffect(() => {
-    (!isDailyMoodSet) && setIsMoodModalVisible(true);
-  }, []);
-
-  function onModalClose() {
+  function onFirstLoginModalClose() {
     setIsFirstLoginModalVisible(false);
+  }
+  function onMoodModalClose() {
     setIsMoodModalVisible(false);
   }
 
-  const showUserName = isUserNameSubmitted || data?.isLoggedIn?.name;
+  const showUserName = userNameInput || name;
 
   return (
     <>
       <h4>
         {(showUserName) && `Bonjour ${showUserName} :-) !`}
       </h4>
-      {!data?.isLoggedIn?.name
+      {!name
        && (
        <Dialog
          question={DialogEnum.NAME}
          onUserInput={getUserName}
-         onModalClose={onModalClose}
+         onModalClose={onFirstLoginModalClose}
          openDialog={isFirstLoginModalVisible}
          data={data}
        />
        )}
-      {data?.isLoggedIn?.name && !isDailyMoodSet && (
+      {showUserName && !isDailyMoodSet && (
       <DialogMood
-        onModalClose={onModalClose}
+        onModalClose={onMoodModalClose}
         openDialog={isMoodModalVisible}
         data={data}
       />
