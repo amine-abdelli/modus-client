@@ -3,7 +3,9 @@ import { Typography } from 'antd';
 
 import './NavBar.less';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTh } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTh, faHome, faPaperPlane,
+} from '@fortawesome/free-solid-svg-icons';
 import { LogoutButton } from '../Authentication';
 import { Section } from './Section';
 import { Routes } from '../../Routes';
@@ -18,7 +20,15 @@ export const NavBar = () => {
       >
         <Title className="navbar--brand" onClick={() => history.push(Routes.HOME)} level={5}>MODUS</Title>
         <Section
-          component={<FontAwesomeIcon icon={faTh} size="lg" />}
+          component={<FontAwesomeIcon color="#264653" icon={faHome} size="lg" mask={['far', 'circle']} />}
+          path={Routes.HOME}
+        />
+        <Section
+          component={<FontAwesomeIcon color="#264653" icon={faTh} size="lg" />}
+          path={Routes.TRACKERS}
+        />
+        <Section
+          component={<FontAwesomeIcon color="#264653" icon={faPaperPlane} size="lg" />}
           path={Routes.TRACKERS}
         />
         <LogoutButton />

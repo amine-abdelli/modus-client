@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 import './Trackers.less';
 
-const trackers = ['mood', 'meditation', 'sport', 'mood', 'meditation', 'sport', 'mood', 'meditation', 'sport', 'mood', 'meditation'];
+const trackers = ['mood'];
 const Trackers = () => {
   console.log();
   return (
