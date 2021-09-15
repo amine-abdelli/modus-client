@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import {
-  Form, Input, Modal, Button, message,
+  Form, Input, Modal, message,
 } from 'antd';
 import { useMutation } from '@apollo/client';
 import { EnterOutlined } from '@ant-design/icons';
@@ -82,7 +82,7 @@ const DialogMood = ({
                 name="username"
                 rules={[{ required: false }]}
               >
-                <Input suffix={<EnterOutlined />} />
+                <Input maxLength={175} suffix={<EnterOutlined />} />
               </Form.Item>
             </>
           )}
