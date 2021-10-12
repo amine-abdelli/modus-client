@@ -1,7 +1,7 @@
 import './App.less';
-import Layout, { Header } from 'antd/lib/layout/layout';
+import Layout from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
-import { Routes } from './Routes/Routes';
+import { Routes } from './components/Routes/Routes';
 import { NavBar } from './components/NavBar/NavBar';
 import { useGetUser } from './api/hooks/useGetUser';
 
@@ -9,16 +9,17 @@ const App = () => {
   const { isLoggedIn } = useGetUser();
   return (
     <>
-      <Layout>
+      <Layout style={{ height: '100vh' }}>
+
         { isLoggedIn ? (
           <Sider
-            style={{ backgroundColor: 'white', padding: '0.3rem' }}
+            style={{ backgroundColor: 'white' }}
             width="7rem"
           >
             <NavBar />
           </Sider>
         ) : ''}
-        <Layout style={{ minHeight: '100vh', padding: '0.3rem' }}>
+        <Layout style={{ height: '100%' }}>
           <Routes />
         </Layout>
       </Layout>
