@@ -1,5 +1,5 @@
 import { Redirect, Route, RouteProps } from 'react-router-dom';
-import { useGetUser } from '../api/hooks/useGetUser';
+import { useGetUser } from '../../api/hooks/useGetUser';
 import { AuthenticatedRoutesInterface } from './PrivateRoute';
 import { Routes } from './Routes.enum';
 

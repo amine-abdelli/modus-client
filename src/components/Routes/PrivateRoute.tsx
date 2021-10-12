@@ -1,7 +1,7 @@
 import React from 'react';
-import { Redirect, Route, RouteProps } from 'react-router-dom';
-import { useGetUser } from '../api/hooks/useGetUser';
-import { Login } from '../components';
+import { Route, RouteProps } from 'react-router-dom';
+import { useGetUser } from '../../api/hooks/useGetUser';
+import { Login } from '..';
 
 export interface AuthenticatedRoutesInterface extends RouteProps {
   children: React.ReactElement

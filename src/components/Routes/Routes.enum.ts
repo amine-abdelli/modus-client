@@ -3,5 +3,6 @@ export enum Routes {
     LOGIN = '/login',
     SIGNUP = '/signup',
     TRACKERS = '/trackers',
+    DAILY = '/daily',
     MOOD = '/mood'
 }

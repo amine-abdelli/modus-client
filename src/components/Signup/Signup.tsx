@@ -3,7 +3,8 @@ import {
   Card, Form, Input, Button, Typography,
 } from 'antd';
 import { SIGNUP_MUTATION } from '../../api/requests/mutation';
-import { Routes } from '../../Routes';
+import { Routes } from '../Routes';
+import { emailRegexp, passwordRegexp } from '../../utils/authenticationPolicy';
 
 interface submitSignupFormArgs {
   email: string,
@@ -39,7 +40,10 @@ const Signup = () => {
           <Form.Item
             className="form_input"
             name="email"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[
+              { required: true, message: 'Please input your username!' },
+              { pattern: emailRegexp, message: 'at least 8 characters long, 1 uppercase letter, 1 lowercase letter, 1 number' },
+            ]}
           >
             <Input placeholder="Email" className="form_input" />
           </Form.Item>
@@ -49,6 +53,8 @@ const Signup = () => {
             rules={[
               { required: true, message: 'Please input your password!' },
               { message: 'At least 8 characters long, 1 uppercase letter, 1 lowercase letter, 1 number.' },
+              { pattern: passwordRegexp, message: 'at least 8 characters long, 1 uppercase letter, 1 lowercase letter, 1 number' },
+
             ]}
             hasFeedback
           >
