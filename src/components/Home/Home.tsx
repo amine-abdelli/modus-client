@@ -5,7 +5,7 @@ import './Home.less';
 import { useGetUser } from '../../api/hooks/useGetUser';
 import { Dialog } from '../Dialogs/Dialog';
 import { DialogMood } from '../Dialogs/DialogMood';
-import { formatDate } from '../../utils';
+import { formatDate } from '../../utils/tools';
 
 export interface moodArgs {
   id: string

@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTh, faHome, faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
-import { LogoutButton } from '../Authentication';
+import { LogoutButton } from '../Authentication/LogoutButton';
 import { Section } from './Section';
-import { Routes } from '../../Routes';
+import { Routes } from '../Routes/Routes.enum';
 
 export const NavBar = () => {
   const history = useHistory();
@@ -29,7 +29,7 @@ export const NavBar = () => {
         />
         <Section
           component={<FontAwesomeIcon color="#264653" icon={faPaperPlane} size="lg" />}
-          path={Routes.TRACKERS}
+          path={Routes.DAILY}
         />
         <LogoutButton />
       </div>
