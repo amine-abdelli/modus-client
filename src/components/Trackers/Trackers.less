@@ -1,0 +1,24 @@
+.tracker-card {
+    &--wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        & .ant-card{
+            margin: 0.5rem;
+            padding: 0.5rem;
+        }
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    min-width: 30rem;
+    height: 20rem;
+    background-color: lightblue;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: lightcyan;
+        transition: background-color 0.3s ease;
+    }
+}
+
