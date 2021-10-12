@@ -5,7 +5,7 @@ import {
 import Title from 'antd/lib/typography/Title';
 import { Link } from 'react-router-dom';
 import { LOGIN_QUERY } from '../../api/requests/queries';
-import { Routes } from '../../Routes';
+import { Routes } from '../Routes';
 
 import './Login.less';
 

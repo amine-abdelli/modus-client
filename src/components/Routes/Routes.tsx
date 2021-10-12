@@ -4,9 +4,10 @@ import {
 } from 'react-router-dom';
 import {
   Home, Login, MoodTracker, Signup,
-} from '../components';
+} from '..';
 import { PrivateRoute, PublicRoute, Routes as RoutesEnum } from '.';
-import { Trackers } from '../components/Trackers/Trackers/Trackers';
+import { Trackers } from '../Trackers/Trackers';
+import { Daily } from '../Daily/Daily';
 
 const Routes = () => (
   <>
@@ -22,6 +23,9 @@ const Routes = () => (
       </PrivateRoute>
       <PrivateRoute path={RoutesEnum.MOOD}>
         <MoodTracker />
+      </PrivateRoute>
+      <PrivateRoute path={RoutesEnum.DAILY}>
+        <Daily />
       </PrivateRoute>
       <PrivateRoute path={RoutesEnum.HOME}>
         <Home />
