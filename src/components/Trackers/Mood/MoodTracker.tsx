@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useGetUser } from '../../../api/hooks/useGetUser';
-import { formatDate, formatDateToCalendar } from '../../../utils';
+import { formatDateToCalendar } from '../../../utils/tools';
 import { MoodInputArgs } from '../../Dialogs/DialogMood';
 import { MoodCalendar, MoodCalendarObj } from './MoodCalendar';
-import MoodCard from './MoodCard';
+import MoodCard from './MoodTooltip';
 
 const MoodTracker = () => {
   const { data } = useGetUser();
@@ -22,7 +22,6 @@ const MoodTracker = () => {
   function getCurrentHoveredMoodData({ day, phrase, value }: MoodCalendarObj) {
     setHoveredMood({ day, phrase, value });
   }
-  console.log(moodHistory);
 
   return (
     <div className="moodtracker--wrapper">

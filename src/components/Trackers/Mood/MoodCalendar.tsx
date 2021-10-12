@@ -1,6 +1,9 @@
 import { ResponsiveCalendar } from '@nivo/calendar';
-import { formatDateToCalendar } from '../../../utils';
+import React, { useState } from 'react';
+import { Modal, Button } from 'antd';
+import { formatDateToCalendar } from '../../../utils/tools';
 import { CustomTooltip } from '../../utils/CustomTooltip/CustomTooltip';
+import TextEditorModal from './TextEditorModal';
 
 export interface MoodCalendarObj {
   day: string,
@@ -17,6 +20,9 @@ interface MoodCalendarArgs {
 const MoodCalendar = ({
   moodHistory, fromDate, getCurrentHoveredMoodData,
 }: MoodCalendarArgs) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<any>();
+
   const today = new Date();
   return (
     <>
@@ -37,6 +43,11 @@ const MoodCalendar = ({
         yearSpacing={40}
         dayBorderWidth={2}
         dayBorderColor="#000"
+        onClick={(day) => {
+          setSelectedDate(day.date);
+          console.log(selectedDate);
+          setIsModalVisible(!isModalVisible);
+        }}
         legends={[
           {
             anchor: 'bottom-right',
@@ -49,7 +60,6 @@ const MoodCalendar = ({
             itemDirection: 'right-to-left',
           },
         ]}
-        onClick={(e) => console.log(e)}
         onMouseEnter={(e: any) => {
           const { phrase, value, day } = e?.data;
           return (
@@ -61,8 +71,6 @@ const MoodCalendar = ({
         }}
         tooltip={(e: any) => {
           const { phrase, value } = e?.data;
-          console.log('DATE', e?.date);
-          console.log('E', e);
           return (
             <CustomTooltip
               phrase={phrase}
@@ -72,6 +80,13 @@ const MoodCalendar = ({
           );
         }}
       />
+      {selectedDate && (
+      <TextEditorModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        selectedDate={selectedDate}
+      />
+      )}
     </>
   );
 };
